@@ -72,7 +72,7 @@ with gr.Blocks(theme=gr.themes.Soft()) as giao_dien:
         with gr.TabItem("Nhận diện Video"):
             with gr.Row():
                 dau_vao_vid = gr.Video(label="Tải video lên đây")
-                dau_ra_vid = gr.Video(label="Kết quả nhận diện")
+                dau_ra_vid = gr.Video(label="Kết quả")
             nut_chay_vid = gr.Button("Bắt đầu nhận diện Video", variant="primary")
             nut_chay_vid.click(fn=xu_ly_video, inputs=dau_vao_vid, outputs=dau_ra_vid)
 
