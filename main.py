@@ -14,22 +14,22 @@ def xu_ly_anh(anh_dau_vao):
     # Chuyển màu RGB (Gradio) sang BGR (YOLO/OpenCV) để không bị lỗi màu
     anh_bgr = cv2.cvtColor(anh_dau_vao, cv2.COLOR_RGB2BGR)
     
-    # Ép AI nhận diện với mức độ tự tin (20%)
+    # Nhận diện với mức độ tự tin (20%)
     results = model.predict(anh_bgr, conf=0.20, verbose=False)
     
-    # In thông báo ra Terminal
+    # In ra Terminal
     so_luong = len(results[0].boxes)
     print(f"-> Đã nhận diện được: {so_luong} vật thể trong bức ảnh này.")
     
-    # Vẽ khung Bounding Box
+    # Vẽ Bounding Box
     anh_da_ve = results[0].plot()
     
-    # Chuyển ngược lại sang RGB để web hiển thị đúng màu
+    # Chuyển ngược lại sang RGB 
     anh_rgb_xuat_ra = cv2.cvtColor(anh_da_ve, cv2.COLOR_BGR2RGB)
     
     return anh_rgb_xuat_ra
 
-# 3. Hàm xử lý VIDEO CHUYỂN ĐỘNG
+# 3. Hàm xử lý VIDEO 
 def xu_ly_video(duong_dan_video):
     duong_dan_xuat = "ket_qua_nhan_dien.mp4"
     cap = cv2.VideoCapture(duong_dan_video)
@@ -54,7 +54,7 @@ def xu_ly_video(duong_dan_video):
     
     return duong_dan_xuat
 
-# 4. Giao diện Web (UI)
+# 4. Giao diện Web 
 with gr.Blocks(theme=gr.themes.Soft()) as giao_dien:
     gr.Markdown("<h1 style='text-align: center;'>Hệ Thống Tự Động Nhận Diện Trái Cây</h1>")
     gr.Markdown("**Sinh viên thực hiện:** Khiếu Hữu Tiến Dũng")
